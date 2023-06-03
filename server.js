@@ -48,6 +48,30 @@ app.get('/greeting/:name', (req, res) => {
     res.send(responseHtml);
   });
 
+  // Fibonacci function
+const isFibonacci = (num) => {
+    let a = 0;
+    let b = 1;
+  
+    while (b < num) {
+      const temp = b;
+      b = a + b;
+      a = temp;
+    }
+  
+    return b === num;
+  };
+  
+  app.get('/fibonacci/:number', (req, res) => {
+    const number = parseInt(req.params.number);
+  
+    if (isFibonacci(number)) {
+      res.send('Very good. It is Fibonacci.');
+    } else {
+      res.send('I can tell this is not a Fibonacci number.');
+    }
+  });
+
 app.listen(3000, function () {
     console.log('Listening on port 3000');
 });
